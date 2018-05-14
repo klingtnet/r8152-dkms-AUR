@@ -12,7 +12,6 @@ depends=('glibc' 'dkms')
 conflicts=("${_pkgbase}")
 optdepends=('linux-headers: Build the module for Arch kernel'
 			'linux-lts-headers: Build the module for LTS Arch kernel')
-#install=$pkgname.install
 source=(http://12244.wpc.azureedge.net/8012244/drivers/rtdrivers/cn/nic/0010-${_pkgbase}.53-$pkgver.tar.bz2
         'dkms.conf')
 sha256sums=('5f5a1efed4714a8ad0fc95e5b628261e118eab537d9ea6f4acd2b88e79a1fc43'
@@ -30,7 +29,5 @@ package() {
 		-e "s/@PKGVER@/${_pkgbase}/g" \
 		-i "${pkgdir}/usr/src/${_pkgbase}-${pkgver}/dkms.conf"
 
-	#cd "${_pkgbase}-$pkgver"
-	#rm src/Makefile_linux24x
 	cp -dr --no-preserve='ownership' "${_pkgbase}-$pkgver" "${pkgdir}/usr/src/${_pkgbase}-${pkgver}/src"
 }
